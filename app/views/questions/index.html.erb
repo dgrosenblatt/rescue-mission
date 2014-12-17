@@ -1,0 +1,7 @@
+<h1>Recently posted questions</h1>
+
+<ul>
+  <% @questions.each do |question| %>
+    <li><%= link_to question.title, question %> | Posted <%= time_ago_in_words(question.created_at) %> ago</li>
+  <% end %>
+</ul>

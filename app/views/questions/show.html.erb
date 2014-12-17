@@ -1,0 +1,52 @@
+<h1>Question:</h1>
+
+<h3><%= @question.title %></h3>
+<p>
+  <%= render_markdown(@question.description) %>
+</p>
+
+<%= form_for [@question, @answer] do |f| %>
+  <% if @answer.errors.any? %>
+  <h4>Answer not saved, because:</h4>
+    <% @answer.errors.full_messages.each do |error| %>
+    <ul>
+      <li><%= error %></li>
+    </ul>
+    <% end %>
+  <% end %>
+
+  <%= f.label :description, 'Answer this question:' %>
+  <br>
+  <%= f.text_area :description, size: "80x10" %>
+  <br>
+  <%= f.submit 'Save Answer' %>
+<% end %>
+
+
+<% unless @answers.nil? %>
+  <h1>Answers:</h1>
+
+  <% @answers.each do |answer| %>
+    <div class="answer<% if answer.best %> best<% end %>">
+      <% if answer.best %>
+        <p>*BEST ANSWER*</p>
+      <% end %>
+      <p>
+        <%= render_markdown(answer.description) %>
+      </p>
+      <small>
+        Posted <%= time_ago_in_words(answer.created_at) %> ago
+      </small>
+
+      <%= form_for [@question, answer] do |f| %>
+        <%= f.hidden_field :best, value: true %>
+        <%= f.submit "This is the best answer" %>
+      <% end %>
+    </div>
+  <% end %>
+
+<% else %>
+  <h4>No answers yet!</h4>
+<% end %>
+
+<%= link_to "Delete this question", @question, method: :delete, data: { confirm: "Delete the question. Final Answer?" } %>
