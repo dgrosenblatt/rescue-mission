@@ -7,13 +7,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= render 'layouts/facebook' %>
   <%= render 'layouts/header' %>
 
-<% if flash.notice %>
-  <%= flash.notice %>
-<% end %>
+  <% if flash.notice %>
+    <%= flash.notice %>
+  <% end %>
 
-<%= yield %>
+  <% if flash.alert %>
+    <%= flash.alert %>
+  <% end %>
+
+  <%= yield %>
 
 </body>
 </html>

@@ -2,6 +2,9 @@
 
 <h3><%= @question.title %></h3>
 <p>
+  Asked by <%= @question.user.name %>
+</p>
+<p>
   <%= render_markdown(@question.description) %>
 </p>
 
@@ -35,7 +38,7 @@
         <%= render_markdown(answer.description) %>
       </p>
       <small>
-        Posted <%= time_ago_in_words(answer.created_at) %> ago
+        Answered <%= time_ago_in_words(answer.created_at) %> ago by <%= answer.user.name %>
       </small>
 
       <%= form_for [@question, answer] do |f| %>

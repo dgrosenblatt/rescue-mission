@@ -10,34 +10,46 @@ class QuestionsController < ApplicationController
   end
 
   def new
+    authenticate!
     @question = Question.new
   end
 
   def create
+    authenticate!
     @question = Question.new(question_params)
+    @question.user_id = current_user.id
     if @question.save
-      redirect_to :new_question, notice: 'New question submitted!'
+      redirect_to @question, notice: 'New question submitted!'
     else
       render :new
     end
   end
 
   def edit
+    authenticate!
     @question = Question.find(params[:id])
+    if current_user.id != @question.user.id
+      redirect_to @question, alert: 'Only the asker of this question can edit it!'
+    end
   end
 
   def update
+    authenticate!
     @question = Question.find(params[:id])
+    redirect_to root_path if current_user.id != @question.user.id
     if @question.update_attributes(question_params)
       redirect_to @question, notice: "Question updated!"
     else
       render :edit
     end
-
   end
 
   def destroy
+    authenticate!
     @question = Question.find(params[:id])
+    if current_user.id != @question.user.id
+      redirect_to @question, alert: 'Only the asker of this question can delete it!'
+    end
     @question.destroy
     redirect_to :questions, notice: "Question and all associated answers deleted!"
   end
