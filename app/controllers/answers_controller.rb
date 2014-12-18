@@ -1,6 +1,7 @@
 class AnswersController < ApplicationController
+  before_action :authenticate, only: [:create, :udpate]
+
   def create
-    authenticate!
     @question = Question.find(params[:question_id])
     @answer = Answer.new(answer_params)
     @answer.question_id = @question.id
@@ -14,7 +15,6 @@ class AnswersController < ApplicationController
   end
 
   def update
-    authenticate!
     @question = Question.find(params[:question_id])
     if current_user.id != @question.user.id
       redirect_to @question, alert: 'Only the asker of this question can decide the best answer!'

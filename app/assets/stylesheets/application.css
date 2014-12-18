@@ -15,17 +15,23 @@
  */
 
 body {
-  font-family: HelveticaNeue;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica;
+  font-weight: 300;
   margin: 0;
 }
 
+.body-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
 header {
-  background-color: #333;
+  background-color: #444;
   margin: 0;
 }
 
 header h1 {
-  color: #EEE;
+  color: #92b3fc;
   margin-top: 0;
   margin-bottom: 10px;
 }

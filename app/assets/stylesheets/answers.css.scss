@@ -3,11 +3,35 @@
 }
 
 .best {
-  background-color: tomato;
+  background-color: #f3f58a;
+  border-radius: 5px;
 }
 
 .new_answer {
   label {
     font-size: 20px;
   }
+}
+
+.question-title,
+.question-description,
+.question {
+  border-bottom: 1px solid #CCC;
+}
+
+.question:hover {
+  background-color: #EEE;
+}
+
+.question {
+  padding: 25px 0;
+  margin: 0;
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+  :hover {
+    color: #92b3fc;
+  }
+
 }

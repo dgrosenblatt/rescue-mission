@@ -1,8 +1,6 @@
-<h1>Recently asked questions</h1>
+<h1>All Questions</h1>
 
-<ul>
-  <% @questions.each do |question| %>
-    <li><%= link_to question.title, question %> |
-      Asked <%= time_ago_in_words(question.created_at) %> ago by <%= question.user.name %></li>
-  <% end %>
-</ul>
+<% @questions.each do |question| %>
+  <p class="question"><%= link_to question.title, question %> |
+    Asked <%= time_ago_in_words(question.created_at) %> ago by <%= question.user.name %></p>
+<% end %>

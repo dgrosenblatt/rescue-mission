@@ -1,33 +1,14 @@
-<h1>Question:</h1>
+<h2 class="question-title"><%= @question.title %></h2>
 
-<h3><%= @question.title %></h3>
-<p>
-  Asked by <%= @question.user.name %>
-</p>
-<p>
+<div class="question-description">
   <%= render_markdown(@question.description) %>
-</p>
-
-<%= form_for [@question, @answer] do |f| %>
-  <% if @answer.errors.any? %>
-  <h4>Answer not saved, because:</h4>
-    <% @answer.errors.full_messages.each do |error| %>
-    <ul>
-      <li><%= error %></li>
-    </ul>
-    <% end %>
-  <% end %>
-
-  <%= f.label :description, 'Answer this question:' %>
-  <br>
-  <%= f.text_area :description, size: "80x10" %>
-  <br>
-  <%= f.submit 'Save Answer' %>
-<% end %>
-
+  <p>
+    <em>Asked <%= time_ago_in_words(@question.created_at) %> ago by <%= @question.user.name %></em>
+  </p>
+</div>
 
 <% unless @answers.nil? %>
-  <h1>Answers:</h1>
+  <h2><%= pluralize(@answers.count, "Answer") %> </h2>
 
   <% @answers.each do |answer| %>
     <div class="answer<% if answer.best %> best<% end %>">
@@ -50,6 +31,23 @@
 
 <% else %>
   <h4>No answers yet!</h4>
+<% end %>
+
+<%= form_for [@question, @answer] do |f| %>
+  <% if @answer.errors.any? %>
+    <h4>Answer not saved, because:</h4>
+    <ul>
+      <% @answer.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= f.label :description, 'Answer this question:' %>
+  <br>
+  <%= f.text_area :description, size: "80x10" %>
+  <br>
+  <%= f.submit 'Save Answer' %>
 <% end %>
 
 <%= link_to "Delete this question", @question, method: :delete, data: { confirm: "Delete the question. Final Answer?" } %>

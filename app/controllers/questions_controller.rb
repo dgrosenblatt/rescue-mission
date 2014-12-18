@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  before_action :authenticate, only: [:new, :create, :edit, :udpate, :destroy]
+
   def index
     @questions = Question.all.order(created_at: :desc)
   end
@@ -10,12 +12,10 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    authenticate!
     @question = Question.new
   end
 
   def create
-    authenticate!
     @question = Question.new(question_params)
     @question.user_id = current_user.id
     if @question.save
@@ -26,7 +26,6 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    authenticate!
     @question = Question.find(params[:id])
     if current_user.id != @question.user.id
       redirect_to @question, alert: 'Only the asker of this question can edit it!'
@@ -34,7 +33,6 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    authenticate!
     @question = Question.find(params[:id])
     redirect_to root_path if current_user.id != @question.user.id
     if @question.update_attributes(question_params)
@@ -45,7 +43,6 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    authenticate!
     @question = Question.find(params[:id])
     if current_user.id != @question.user.id
       redirect_to @question, alert: 'Only the asker of this question can delete it!'
