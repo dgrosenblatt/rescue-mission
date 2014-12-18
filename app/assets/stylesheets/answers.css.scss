@@ -13,6 +13,10 @@
   }
 }
 
+#question-index-title {
+  margin-bottom: 0;
+}
+
 .question-title,
 .question-description,
 .question {
@@ -33,5 +37,27 @@
   :hover {
     color: #92b3fc;
   }
+}
 
+#results {
+  margin: 0;
+}
+
+button, input[type="submit"] {
+
+  background-color:#92b3fc;
+  font-size:19px;
+  font-family: inherit;
+  padding:12px 37px;
+  border:1px solid #EEE;
+  cursor:pointer;
+  &:hover {
+    background-color: #6c9cf2;
+    color: #222;
+  }
+}
+
+#next {
+  display: block;
+  margin: 20px auto;
 }

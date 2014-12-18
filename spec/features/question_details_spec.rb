@@ -12,7 +12,7 @@ feature 'View details of a question' do
   # - I must see the question's description
   scenario 'visit show page for a question' do
     visit '/questions/new'
-    Question.create!(title: "What's the deal with Ruby on Rails? Help ASAP",
+    FactoryGirl.create(:question, title: "What's the deal with Ruby on Rails? Help ASAP",
                     description: "I'm trying to build a new app. I typed in rails
                     generate scaffold, but I don't have the next facebook yet.
                     Someone please help. I don't have much time left and I'd

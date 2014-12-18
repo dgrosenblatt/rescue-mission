@@ -11,7 +11,7 @@ feature 'Answer another users question' do
   # - I must provide a description that is at least 50 characters long
   # - I must be presented with errors if I fill out the form incorrectly
   scenario 'with valid information' do
-    @question = Question.create(title: "T" * 50, description: "D" * 150)
+    @question = FactoryGirl.create(:question)
     visit "/questions/#{@question.id}"
     fill_in "Answer this question:", with: ('A' * 50)
     click_on 'Save Answer'
@@ -21,7 +21,7 @@ feature 'Answer another users question' do
 
   context 'with invalid information' do
     scenario 'without a description' do
-      @question = Question.create(title: "T" * 50, description: "D" * 150)
+      @question = FactoryGirl.create(:question)
       visit "/questions/#{@question.id}"
       click_on 'Save Answer'
 
@@ -29,7 +29,7 @@ feature 'Answer another users question' do
     end
 
     scenario 'with a short description' do
-      @question = Question.create(title: "T" * 50, description: "D" * 150)
+      @question = FactoryGirl.create(:question)
       visit "/questions/#{@question.id}"
       fill_in 'Answer this question:', with: 'blerg'
       click_on 'Save Answer'

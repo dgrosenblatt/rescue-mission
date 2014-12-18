@@ -10,13 +10,11 @@
   <%= render 'layouts/facebook' %>
   <%= render 'layouts/header' %>
 
-  <% if flash.notice %>
-    <%= flash.notice %>
+  <% if flash.any? %>
+    <div class="flash"><p><%= flash.notice %></p></div>
+    <div class="flash"><p><%= flash.alert %></p></div> 
   <% end %>
 
-  <% if flash.alert %>
-    <%= flash.alert %>
-  <% end %>
   <div class="body-container">
     <%= yield %>
   </div>

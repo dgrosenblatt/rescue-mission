@@ -30,7 +30,7 @@ feature 'Write questions and answers with markdown' do
   end
 
   scenario 'submitting an answer with markdown' do
-    @question = Question.create(title: "T" * 50, description: "D" * 150)
+    @question = FactoryGirl.create(:question)
     visit "/questions/#{@question.id}"
     fill_in "Answer this question", with: "Dude, that question is so **lame**. I
                                            cannot believe you haven't been

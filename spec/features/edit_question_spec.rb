@@ -11,7 +11,7 @@ feature 'Edit a question' do
   # - I must be presented with errors if I fill out the form incorrectly
   # - I must be able to get to the edit page from the question details page
   scenario 'with valid information' do
-    @question = Question.create(title: "T" * 50, description: "D" * 150)
+    @question = FactoryGirl.create(:question)
     visit "/questions/#{@question.id}/edit"
     fill_in 'Title', with: ('S' * 50)
     fill_in 'Description', with: ('E' * 150)

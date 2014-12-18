@@ -11,7 +11,7 @@ feature 'Delete a question' do
   # - I must be able delete a question from the question details page
   # - All answers associated with the question must also be deleted
   scenario 'visiting the question details page' do
-    @question = Question.create(title: "T" * 50, description: "D" * 150)
+    @question = FactoryGirl.create(:question)
     visit "/questions/#{@question.id}"
 
     expect(page).to have_content "Delete this question"

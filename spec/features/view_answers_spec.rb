@@ -11,7 +11,7 @@ feature 'View answers for one question' do
   # - I must only see answers to the question I'm viewing
   # - I must see all answers listed in order, most recent last
   scenario 'visting the show page for a question' do
-    @question = Question.create(title: "T" * 50, description: "D" * 150)
+    @question = FactoryGirl.create(:question)
     visit "/questions/#{@question.id}"
     fill_in 'Answer this question:', with: 'A' * 50
     click_on 'Save Answer'

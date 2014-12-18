@@ -3,5 +3,6 @@ FactoryGirl.define do
     description 'Here is an answer to your question. I do not know what the answer is.'
 
     question
+    user
   end
 end

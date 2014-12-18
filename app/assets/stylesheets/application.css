@@ -38,10 +38,20 @@ header h1 {
 
 header p {
   margin-top: 4px;
+  margin-bottom: 0;
 }
 
 header a, header p {
   text-decoration: none;
   color: #EEE;
   font-size: 18px;
+}
+
+.flash {
+  background-color:#92b3fc;
+  font-size: 20px;
+}
+
+.flash p {
+  text-align:center;
 }

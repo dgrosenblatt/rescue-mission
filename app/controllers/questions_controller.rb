@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   before_action :authenticate, only: [:new, :create, :edit, :udpate, :destroy]
 
   def index
-    @questions = Question.all.order(created_at: :desc)
+    @questions = Question.all.order(created_at: :desc).limit(3)
   end
 
   def show
@@ -49,6 +49,11 @@ class QuestionsController < ApplicationController
     end
     @question.destroy
     redirect_to :questions, notice: "Question and all associated answers deleted!"
+  end
+
+  def next
+    @questions = Question.all.order(created_at: :desc).offset(3)
+    render partial: 'next'
   end
 
   private
