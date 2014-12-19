@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'questions#index'
 
-  match 'questions/next', to: 'questions#next', via: :get
+  match 'questions/next/:last_q', to: 'questions#next', via: :get
 
   resources :questions do
     resources :answers, only: [:create, :update]

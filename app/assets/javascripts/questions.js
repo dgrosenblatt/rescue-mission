@@ -1,21 +1,31 @@
+var ready = function() {
+  questions.init();
+};
+
 var questions = {
   init: function() {
-    $("#next").on("click", this.loadNext);
-  },
-  loadNext: function() {
-    $.ajax({
-      url: "/questions/next",
-      cache: false
-    })
-    .done(function( html ) {
-      $( "#results" ).after( html );
-      $( "#question-index-title" ).text("All Questions");
-      $( "#next" ).text("All Questions Loaded!").delay(800).fadeOut(800);
+    //$("#next").on("click", this.loadNext);
+
+    $( window ).on("scroll", function(){
+      if (parseInt($(window).scrollTop()) + parseInt(window.innerHeight) >= $( 'html' ).height()) {
+        //console.log("Firing");
+        $( "#next" ).animate({
+          width: "+=5%"
+        }, 2000, function(){
+          $.ajax({
+            url: "/questions/next/" + $( ".question" ).length,
+            cache: false
+          })
+          .done(function( html ) {
+            $( ".question" ).last().after( html );
+            $( "#question-index-title" ).text($( ".question" ).length + " Most Recent Questions");
+          });
+        });
+      }
     });
   }
 };
 
 
-$(document).ready(function() {
-  questions.init();
-});
+$(document).ready(ready);
+$(document).on('page:load', ready);

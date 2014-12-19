@@ -1,12 +1,8 @@
-<h1 id="question-index-title">Top 3 Questions</h1>
+<h1 id="question-index-title">10 Most Recent Questions</h1>
 
 <% @questions.each do |question| %>
   <p class="question"><%= link_to question.title, question %> |
     Asked <%= time_ago_in_words(question.created_at) %> ago by <%= question.user.name %></p>
 <% end %>
 
-<p id="results">
-
-</p>
-
-<button id="next">Load All Questions</button>
+<button id="next">Scroll Down to Load More Questions</button>

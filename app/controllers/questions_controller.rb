@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   before_action :authenticate, only: [:new, :create, :edit, :udpate, :destroy]
 
   def index
-    @questions = Question.all.order(created_at: :desc).limit(3)
+    @questions = Question.all.order(created_at: :desc).limit(10)
   end
 
   def show
@@ -52,7 +52,7 @@ class QuestionsController < ApplicationController
   end
 
   def next
-    @questions = Question.all.order(created_at: :desc).offset(3)
+    @questions = Question.all.order(created_at: :desc).offset(params[:last_q]).limit(5)
     render partial: 'next'
   end
 

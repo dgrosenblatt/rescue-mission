@@ -4,7 +4,7 @@
   <h1>Rescue Mission</h1>
   <p>
     <%= link_to 'New Question', new_question_path %> |
-    <%= link_to 'View All Questions', questions_path %> |
+    <%= link_to 'Recent Questions', questions_path %> |
     <% if current_user %>
       Signed in as <strong><%= current_user.name %></strong> |
       <%= link_to "Sign out", signout_path, id: "sign_out" %>
