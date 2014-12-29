@@ -4,11 +4,9 @@ var ready = function() {
 
 var questions = {
   init: function() {
-    //$("#next").on("click", this.loadNext);
 
     $( window ).on("scroll", function(){
       if (parseInt($(window).scrollTop()) + parseInt(window.innerHeight) >= $( 'html' ).height()) {
-        //console.log("Firing");
         $( "#next" ).animate({
           width: "+=5%"
         }, 2000, function(){
